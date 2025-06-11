@@ -1,0 +1,239 @@
+@import "tailwindcss";
+/* @tailwind utilities;
+@tailwind base;
+@tailwind components; */
+
+/* theme colors for tailwind variables */
+@theme {
+  --color-primary: #0798f1;
+
+  /* background-color */
+  --color-screens: #daf0fd;
+  --color-cards: #f3fafe;
+  --color-dark: #0572b5;
+  --color-footer: #f9fcfe;
+  --color-gray-light: #d1d1d6;
+  --color-blue-darker: #023554;
+  --color-secondary: #ebebeb;
+
+  /* gradient-color */
+  --color-blue-start: #0798f1;
+  --color-blue-end: #0572b5;
+
+  /* hover-color */
+  --color-normal-hover: #0689d9;
+  --color-normal-active: #067ac1;
+  --color-dark-hover: #045b91;
+  --color-dark-active: #03446c;
+
+  /* text-color */
+  --color-text-title: #1c1c1c;
+  --color-text-titles: #222222;
+  --color-text-primary: #121217;
+  --color-text-body: #686767;
+  --color-text-captions: #b8bfc5;
+  --color-text-tabs: #6f6f6f;
+
+  /* border-color */
+  --color-border-blue: #b2dffb;
+  --color-border-gray: #d8d8d8;
+}
+button {
+  @apply cursor-pointer;
+}
+
+.container {
+  @apply xl:w-[90%] max-w-[1300px]  sm:w-[85%] w-[90%] !mx-auto;
+}
+
+/* card hover scale */
+
+.fondation-blue-linear {
+  @apply bg-gradient-to-r from-blue-start to-blue-end;
+}
+
+.fondation-blue-linear-text {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-start to-blue-end;
+}
+
+.iframe-container {
+  position: relative;
+}
+
+.iframe-container iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.hide-watermark {
+  position: absolute;
+  z-index: 4;
+  bottom: 15px;
+  right: 18px;
+  width: 150px;
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 12px;
+  background: white;
+  /* Match background */
+  z-index: 10;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  width: 95%;
+  max-width: 500px;
+  animation: modalSlide 0.3s ease;
+}
+
+@keyframes modalSlide {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+  .modal-content {
+    padding: 1rem;
+  }
+}
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 1px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.filters .swiper-slide {
+  width: auto !important;
+}
+
+/* fonts.css */
+
+/* Regular (400) */
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 400;
+  /* If you used public folder */
+  src: url("./assets//fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Regular.ttf")
+    format("truetype");
+}
+
+/* Bold (700) */
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./assets//fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Bold.ttf")
+    format("truetype");
+}
+* {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+nav .active {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.stop_copy_select,
+input[type="password"] {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
+}
+
+.react-datepicker-wrapper {
+  @apply w-full;
+}
+.whatsapp-component img {
+  padding: 10px;
+}
+.whatsapp-component form {
+  gap: 10px;
+  direction: ltr; /* This will reverse the direction */
+}
+.Custom-grid {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+@media (min-width: 380px) {
+  .Custom-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 640px) {
+  .Custom-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 768px) {
+  .Custom-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .Custom-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
