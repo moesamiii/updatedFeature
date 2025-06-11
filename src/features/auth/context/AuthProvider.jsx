@@ -62,13 +62,18 @@ export const AuthProvider = ({ children, config }) => {
 
           const data = await refreshTokenApi(refreshToken, config.apiUrl);
 
-          if (data.token !== lastTokenRef.current) {
-            saveToken(data.token);
-            setToken(data.token);
-            lastTokenRef.current = data.token;
+          // Update token
+          if (data.accessToken && data.accessToken !== lastTokenRef.current) {
+            saveToken(data.accessToken);
+            setToken(data.accessToken);
+            lastTokenRef.current = data.accessToken;
           }
 
-          if (data.refreshToken !== lastRefreshTokenRef.current) {
+          // Update refreshToken ONLY if returned by backend
+          if (
+            data.refreshToken &&
+            data.refreshToken !== lastRefreshTokenRef.current
+          ) {
             saveRefreshToken(data.refreshToken);
             setRefreshTokenState(data.refreshToken);
             lastRefreshTokenRef.current = data.refreshToken;
@@ -106,19 +111,30 @@ export const AuthProvider = ({ children, config }) => {
 
           const data = await refreshTokenApi(refreshToken, config.apiUrl);
 
-          if (data.token !== lastTokenRef.current) {
-            saveToken(data.token);
-            setToken(data.token);
-            lastTokenRef.current = data.token;
+          // Update token
+          if (data.accessToken && data.accessToken !== lastTokenRef.current) {
+            saveToken(data.accessToken);
+            setToken(data.accessToken);
+            lastTokenRef.current = data.accessToken;
           }
 
-          if (data.refreshToken !== lastRefreshTokenRef.current) {
+          // Update refreshToken ONLY if returned by backend
+          if (
+            data.refreshToken &&
+            data.refreshToken !== lastRefreshTokenRef.current
+          ) {
             saveRefreshToken(data.refreshToken);
             setRefreshTokenState(data.refreshToken);
             lastRefreshTokenRef.current = data.refreshToken;
           }
 
           console.log("Token auto-refreshed!");
+
+          // Optional: if backend sends empty refreshToken → logout
+          if (data.refreshToken === "") {
+            console.warn("Refresh token is empty → logging out.");
+            logout();
+          }
 
           isRefreshingRef.current = false;
         } catch (err) {
